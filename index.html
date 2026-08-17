@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ガルパ キャラミッション最適化ツール v3</title>
+<title>ガルパ キャラミッション最適化ツール</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap');
 
@@ -144,7 +144,7 @@ input[type="number"], input[type="text"] {
   font-weight: 700;
   padding: 7px 0;
   text-align: center;
-  width: 56px;
+  width: 60px;
   transition: border-color 0.15s;
 }
 input[type="number"]:focus, input[type="text"]:focus {
@@ -221,8 +221,9 @@ textarea:focus { outline: none; border-color: var(--accent); color: var(--text);
   gap: 6px;
 }
 .t-name {
-  font-size: 11px;
-  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
   line-height: 1.4;
 }
 .t-exp {
@@ -265,6 +266,7 @@ textarea:focus { outline: none; border-color: var(--accent); color: var(--text);
 .target-row {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 12px;
   font-size: 15px;
   font-weight: 700;
@@ -341,6 +343,7 @@ textarea:focus { outline: none; border-color: var(--accent); color: var(--text);
   font-size: 13px;
   font-weight: 700;
   margin-top: 10px;
+  line-height: 1.5;
   text-align: center;
 }
 .ng-box {
@@ -352,6 +355,7 @@ textarea:focus { outline: none; border-color: var(--accent); color: var(--text);
   font-size: 13px;
   font-weight: 700;
   margin-top: 10px;
+  line-height: 1.5;
   text-align: center;
 }
 
@@ -378,8 +382,8 @@ textarea:focus { outline: none; border-color: var(--accent); color: var(--text);
 <!-- ヘッダー -->
 <div class="hdr">
   <div class="hdr-tag">BanG Dream! GaruPa — Mission Optimizer</div>
-  <h1>キャラミッション<br><span>最適化ツール v3</span></h1>
-  <div class="hdr-sub">// 全リソース統合 · 最小コスト突破 · スコラン本番EXP温存</div>
+  <h1>キャラミッション<br><span>最適化ツール</span></h1>
+  <div class="hdr-sub">// 全リソース統合・最小コスト計算</div>
   <div class="hdr-line"></div>
 </div>
 
@@ -390,7 +394,7 @@ textarea:focus { outline: none; border-color: var(--accent); color: var(--text);
     <span style="font-size:12px;color:var(--muted);">キャラ名:</span>
     <input type="text" id="charName" placeholder="例: 戸山香澄">
   </div>
-  <textarea id="csvInput" placeholder="保存したCSVをここに貼り付けて「読み込む」を押す"></textarea>
+  <textarea id="csvInput" placeholder="保存したCSVデータをここに貼り付けて「読み込む」を押してください"></textarea>
   <div class="btn-row">
     <button class="btn btn-green" onclick="importCSV()">▲ 読み込む</button>
     <button class="btn btn-cyan"  onclick="exportCSV()">▼ CSV保存</button>
@@ -432,15 +436,15 @@ textarea:focus { outline: none; border-color: var(--accent); color: var(--text);
       <tbody id="benchBody"></tbody>
     </table>
   </div>
-  <div class="note">素材として使用すると上記EXPが獲得できる。</div>
+  <div class="note">素材として使用すると上記EXPが獲得できます。</div>
 </div>
 
 <!-- チケット -->
 <div class="panel">
-  <div class="panel-title">STEP 3 — スキルチケット</div>
+  <div class="panel-title">STEP 3 — スキル練習チケット</div>
   <div class="ticket-grid">
     <div class="t-card">
-      <div class="t-name">トリプルスキルアップ</div>
+      <div class="t-name">トリプル</div>
       <div class="t-exp">+30 EXP/枚</div>
       <div class="t-row">
         <input type="number" id="tickTriple" value="0" min="0" oninput="updateExpPreview()">
@@ -448,7 +452,7 @@ textarea:focus { outline: none; border-color: var(--accent); color: var(--text);
       </div>
     </div>
     <div class="t-card">
-      <div class="t-name">プレミアムスキルアップ</div>
+      <div class="t-name">プレミアム</div>
       <div class="t-exp">+200 EXP/枚</div>
       <div class="t-row">
         <input type="number" id="tickPremium" value="0" min="0" oninput="updateExpPreview()">
@@ -456,7 +460,7 @@ textarea:focus { outline: none; border-color: var(--accent); color: var(--text);
       </div>
     </div>
     <div class="t-card">
-      <div class="t-name">ダブルスキルアップ</div>
+      <div class="t-name">ダブル</div>
       <div class="t-exp">+5 EXP/枚</div>
       <div class="t-row">
         <input type="number" id="tickDouble" value="0" min="0" oninput="updateExpPreview()">
@@ -464,7 +468,7 @@ textarea:focus { outline: none; border-color: var(--accent); color: var(--text);
       </div>
     </div>
     <div class="t-card">
-      <div class="t-name">シングルスキルアップ</div>
+      <div class="t-name">シングル</div>
       <div class="t-exp">+1 EXP/枚</div>
       <div class="t-row">
         <input type="number" id="tickSingle" value="0" min="0" oninput="updateExpPreview()">
@@ -476,11 +480,7 @@ textarea:focus { outline: none; border-color: var(--accent); color: var(--text);
 
 <!-- EXP合計プレビュー -->
 <div class="panel">
-  <div class="panel-title">STEP 4 — 手持ちEXP + EXP合計プレビュー</div>
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-    <span style="font-size:12px;color:var(--muted);">手持ちEXP（チケット・控え室込み合計）:</span>
-    <input type="number" id="baseExp" value="81800" min="0" style="width:90px;" oninput="updateExpPreview()">
-  </div>
+  <div class="panel-title">STEP 4 — EXP合計プレビュー</div>
   <div class="exp-total-bar">
     <div>
       <div class="exp-total-label">使用可能 総EXP</div>
@@ -488,17 +488,19 @@ textarea:focus { outline: none; border-color: var(--accent); color: var(--text);
     </div>
     <div class="exp-total-val" id="totalExpDisplay">0</div>
   </div>
-  <div class="note">手持ちEXPにチケット・控え室分を加算した合計が実際に使えるEXP。</div>
+  <div class="note">控え室の変換分とスキル練習チケットのEXP合計が、実際に使用可能なEXPです。</div>
 </div>
 
 <!-- 目標 & 計算 -->
 <div class="panel">
-  <div class="panel-title">STEP 5 — 目標回数 & 計算</div>
+  <div class="panel-title">STEP 5 — 目標 & 計算</div>
   <div class="target-row">
-    <span>スキルアップ目標:</span>
-    <input type="number" id="targetCount" value="80" min="1" style="width:70px;">
-    <span>回</span>
+    <span>現在のスキルLv:</span>
+    <input type="number" id="currentLv" value="0" min="0" oninput="updateTargetDiff()">
+    <span>目標のスキルLv:</span>
+    <input type="number" id="targetLv" value="80" min="1" oninput="updateTargetDiff()">
   </div>
+  <div style="font-size:13px;color:var(--accent);margin-top:10px;font-family:'M PLUS 1 Code',monospace;" id="targetDiff">必要なスキルアップ回数: 80 回</div>
   <button class="btn-calc" onclick="calculate()">▶ 最適ルート計算</button>
 </div>
 
@@ -562,6 +564,7 @@ let latestResult = null;
   });
 
   updateExpPreview();
+  updateTargetDiff();
 })();
 
 function updateCardMax(ri) {
@@ -590,18 +593,27 @@ function updateExpPreview() {
   const tickTotal = tTriple*TICK_EXP.triple + tPremium*TICK_EXP.premium
                   + tDouble*TICK_EXP.double + tSingle*TICK_EXP.single;
 
-  const baseExp = parseInt(document.getElementById('baseExp').value) || 0;
-  const grand   = baseExp + benchTotal + tickTotal;
+  const grand = benchTotal + tickTotal;
 
   document.getElementById('totalExpDisplay').textContent = grand.toLocaleString();
   document.getElementById('expBreakdown').textContent =
-    `手持ち ${baseExp.toLocaleString()} + 控え室 ${benchTotal.toLocaleString()} + チケット ${tickTotal.toLocaleString()}`;
+    `控え室 ${benchTotal.toLocaleString()} + チケット ${tickTotal.toLocaleString()}`;
+}
+
+function updateTargetDiff() {
+  const current = parseInt(document.getElementById('currentLv').value) || 0;
+  const targetLv = parseInt(document.getElementById('targetLv').value) || 0;
+  const diff = Math.max(0, targetLv - current);
+  document.getElementById('targetDiff').textContent = `必要なスキルアップ回数: ${diff} 回`;
 }
 
 /* ── 計算ロジック ── */
 function calculate() {
-  const target = parseInt(document.getElementById('targetCount').value) || 0;
-  if (target <= 0) { alert('目標回数を1以上にしてや'); return; }
+  const current = parseInt(document.getElementById('currentLv').value) || 0;
+  const targetLv = parseInt(document.getElementById('targetLv').value) || 0;
+  const target = targetLv - current;
+
+  if (target <= 0) { alert('目標のスキルLvが現在のスキルLv以下に設定されています。'); return; }
 
   // 総EXP
   let benchTotal = 0;
@@ -614,8 +626,8 @@ function calculate() {
   const tSingle  = parseInt(document.getElementById('tickSingle').value)  || 0;
   const tickTotal = tTriple*TICK_EXP.triple + tPremium*TICK_EXP.premium
                   + tDouble*TICK_EXP.double + tSingle*TICK_EXP.single;
-  const baseExp = parseInt(document.getElementById('baseExp').value) || 0;
-  let totalExp  = baseExp + benchTotal + tickTotal;
+  
+  const totalExp = benchTotal + tickTotal;
 
   // 被りカードプール構築
   let pool = [];
@@ -637,34 +649,17 @@ function calculate() {
   });
   upgrades.sort((a, b) => a.exp - b.exp);
 
-  // EXP上限まで貪欲に消費
+  // EXP不足でも目標回数に達するまで計算を続ける
   let done = 0;
   let usedExp = 0;
   const cardFinalLv = pool.map(c => c.initLv);
 
   for (const u of upgrades) {
     if (done >= target) break;
-    if (usedExp + u.exp > totalExp) continue; // EXP不足はスキップ
-    // 依存チェック：fromLv == cardFinalLv[ci] でないと使えない
     if (cardFinalLv[u.ci] !== u.fromLv) continue;
     cardFinalLv[u.ci] = u.toLv;
     usedExp += u.exp;
     done++;
-  }
-
-  // 目標未達の場合、EXP足りてるのにカード不足かチェック
-  let maxPossible = 0;
-  {
-    let tmpExp = totalExp;
-    const tmpLv = pool.map(c => c.initLv);
-    const tmpUpg = [...upgrades]; // already sorted
-    for (const u of tmpUpg) {
-      if (tmpLv[u.ci] !== u.fromLv) continue;
-      if (tmpExp < u.exp) continue;
-      tmpLv[u.ci] = u.toLv;
-      tmpExp -= u.exp;
-      maxPossible++;
-    }
   }
 
   // サマリー生成
@@ -680,14 +675,11 @@ function calculate() {
   const charName  = document.getElementById('charName').value || '対象キャラ';
   const remaining = target - done;
   const expAfter  = totalExp - usedExp;
-  const cardShort = maxPossible < target; // カード枚数不足フラグ
-  const expShort  = !cardShort && remaining > 0; // EXP不足フラグ
 
   latestResult = {
     charName, summaryMap, done, target, remaining,
-    usedExp, totalExp, expAfter, maxPossible,
-    cardShort, expShort,
-    benchTotal, tickTotal, baseExp
+    usedExp, totalExp, expAfter,
+    benchTotal, tickTotal
   };
 
   renderResult(latestResult);
@@ -698,7 +690,7 @@ function renderResult(d) {
   let html = `<div style="font-family:'M PLUS 1 Code',monospace;font-size:13px;color:var(--muted);margin-bottom:12px;">${d.charName} の最適育成手順</div>`;
 
   if (Object.keys(d.summaryMap).length === 0) {
-    html += `<p style="color:var(--muted);font-size:13px;">育成可能なカードがないか、EXPが全カードのLv1コストにも足りへん。</p>`;
+    html += `<p style="color:var(--muted);font-size:13px;">育成可能なカードが1枚もありません。</p>`;
   } else {
     for (const key in d.summaryMap) {
       const parts = key.split('_');
@@ -716,30 +708,40 @@ function renderResult(d) {
   }
 
   // サマリーカード
-  const pct = d.totalExp > 0 ? Math.min(100, Math.round(d.usedExp / d.totalExp * 100)) : 0;
-  const barCls = pct < 40 ? 'bar-safe' : pct < 70 ? 'bar-warn' : 'bar-danger';
-  const pctCol = pct < 40 ? 'var(--green)' : pct < 70 ? 'var(--yellow)' : 'var(--red)';
-
   html += `<div class="sum-grid">
     <div class="sum-card">
       <div class="sum-lbl">達成回数</div>
       <div class="sum-val" style="color:var(--accent)">${d.done}<span style="font-size:12px;color:var(--muted)">/${d.target}</span></div>
     </div>
     <div class="sum-card">
-      <div class="sum-lbl">消費EXP</div>
+      <div class="sum-lbl">必要総EXP</div>
       <div class="sum-val" style="color:var(--pink);font-size:16px;">${d.usedExp.toLocaleString()}</div>
     </div>
     <div class="sum-card">
-      <div class="sum-lbl">残りEXP</div>
-      <div class="sum-val" style="color:var(--green);font-size:16px;">${d.expAfter.toLocaleString()}</div>
+      <div class="sum-lbl">${d.expAfter >= 0 ? '残りEXP' : '不足EXP'}</div>
+      <div class="sum-val" style="color:${d.expAfter >= 0 ? 'var(--green)' : 'var(--red)'};font-size:16px;">${Math.abs(d.expAfter).toLocaleString()}</div>
     </div>
   </div>`;
 
   // EXPバー
+  let pct = 0;
+  if (d.totalExp > 0) {
+    pct = Math.min(100, Math.round(d.usedExp / d.totalExp * 100));
+  } else if (d.usedExp > 0) {
+    pct = 100;
+  }
+  
+  const isExpShort = d.expAfter < 0;
+  const barCls = !isExpShort ? (pct < 40 ? 'bar-safe' : pct < 70 ? 'bar-warn' : 'bar-danger') : 'bar-danger';
+  const pctCol = isExpShort ? 'var(--red)' : (pct < 40 ? 'var(--green)' : pct < 70 ? 'var(--yellow)' : 'var(--red)');
+  const barText = isExpShort 
+    ? `<span style="color:var(--red)">${Math.abs(d.expAfter).toLocaleString()} EXP 不足</span>` 
+    : `残 ${d.expAfter.toLocaleString()} EXP`;
+
   html += `<div class="bar-wrap">
     <div class="bar-head">
-      <span>EXP消費率</span>
-      <span style="color:${pctCol}">${pct}%　（残 ${d.expAfter.toLocaleString()} EXP → スコラン本番用）</span>
+      <span>手持ちEXPに対する消費率</span>
+      <span style="color:${pctCol}">${pct}%　（${barText}）</span>
     </div>
     <div class="bar-track"><div class="bar-fill ${barCls}" style="width:0%" id="barFill"></div></div>
   </div>`;
@@ -747,17 +749,23 @@ function renderResult(d) {
   // 内訳
   html += `<div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px 14px;margin-top:10px;font-size:12px;font-family:'M PLUS 1 Code',monospace;color:var(--muted);">
     <div style="margin-bottom:4px;">EXP内訳</div>
-    <div>手持ち: ${d.baseExp.toLocaleString()} ／ 控え室: ${d.benchTotal.toLocaleString()} ／ チケット: ${d.tickTotal.toLocaleString()}</div>
-    <div style="margin-top:4px;">合計: ${d.totalExp.toLocaleString()} → 消費: ${d.usedExp.toLocaleString()} → 残: ${d.expAfter.toLocaleString()}</div>
+    <div>控え室: ${d.benchTotal.toLocaleString()} ／ チケット: ${d.tickTotal.toLocaleString()}</div>
+    <div style="margin-top:4px;">手持ち合計: ${d.totalExp.toLocaleString()} → 今回の必要EXP: ${d.usedExp.toLocaleString()}</div>
   </div>`;
 
-  // 達成判定
+  // 達成判定メッセージ
   if (d.remaining === 0) {
-    html += `<div class="ok-box">✅ 目標 ${d.target} 回 達成可能！残り ${d.expAfter.toLocaleString()} EXP をスコラン本番用に温存できるで</div>`;
-  } else if (d.cardShort) {
-    html += `<div class="ng-box">⚠️ カード枚数が足りへん。最大 ${d.maxPossible} 回しか達成できんわ（目標まで ${d.remaining} 回不足）<br>控え室カードをスキルアップ対象に回すか、ガチャるしかないな</div>`;
-  } else if (d.expShort) {
-    html += `<div class="ng-box">⚠️ EXPが足りへん。チケット・控え室を追加するか目標回数を下げてや（あと ${(d.usedExp - d.totalExp + (d.remaining * 20)).toLocaleString()} EXP 程度必要）</div>`;
+    if (d.expAfter >= 0) {
+      html += `<div class="ok-box">✅ 目標達成可能です！<br>残り ${d.expAfter.toLocaleString()} EXP あります。</div>`;
+    } else {
+      html += `<div class="ng-box">⚠️ EXPが不足しています。<br>目標回数までのカード枚数は足りますが、すべて実行するにはあと ${Math.abs(d.expAfter).toLocaleString()} EXP 必要です。</div>`;
+    }
+  } else {
+    if (d.expAfter >= 0) {
+      html += `<div class="ng-box">⚠️ カード枚数が不足しています。<br>手持ちのカードでは最大 ${d.done} 回までしかスキルアップできません（目標まであと ${d.remaining} 回不足）。</div>`;
+    } else {
+      html += `<div class="ng-box">⚠️ カード枚数とEXPが両方不足しています。<br>最大 ${d.done} 回分のカードしかなく、さらにそれらを実行するのにも ${Math.abs(d.expAfter).toLocaleString()} EXP 不足しています。</div>`;
+    }
   }
 
   document.getElementById('result').innerHTML = html;
@@ -770,8 +778,8 @@ function renderResult(d) {
 /* ── CSV ── */
 function genCSV() {
   let csv = `キャラ名,${document.getElementById('charName').value||'名称未設定'}\n`;
-  csv += `手持ちEXP,${document.getElementById('baseExp').value||0}\n`;
-  csv += `目標回数,${document.getElementById('targetCount').value||0}\n`;
+  csv += `現在のスキルLv,${document.getElementById('currentLv').value||0}\n`;
+  csv += `目標のスキルLv,${document.getElementById('targetLv').value||80}\n`;
   csv += `tickTriple,${document.getElementById('tickTriple').value||0}\n`;
   csv += `tickPremium,${document.getElementById('tickPremium').value||0}\n`;
   csv += `tickDouble,${document.getElementById('tickDouble').value||0}\n`;
@@ -793,24 +801,28 @@ function exportCSV() {
   const blob = new Blob([bom, genCSV()], {type:'text/csv;charset=utf-8;'});
   const a    = document.createElement('a');
   a.href     = URL.createObjectURL(blob);
-  a.download = `${name}_v3.csv`;
+  a.download = `${name}.csv`;
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
 }
 
 function copyCSV() {
-  navigator.clipboard.writeText(genCSV()).then(() => alert('CSVコピーしたで！'));
+  navigator.clipboard.writeText(genCSV()).then(() => alert('CSVデータをクリップボードにコピーしました。'));
 }
 
 function importCSV() {
   const raw = document.getElementById('csvInput').value.trim();
-  if (!raw) { alert('CSVが貼り付けられてへんで'); return; }
+  if (!raw) { alert('CSVデータが入力されていません。'); return; }
   const lines = raw.split(/\r?\n/).map(l => l.trim()).filter(l => l);
   try {
     for (const line of lines) {
       const c = line.split(',');
-      if      (c[0]==='キャラ名')    document.getElementById('charName').value = c[1]||'';
-      else if (c[0]==='手持ちEXP')   { document.getElementById('baseExp').value = c[1]||0; }
-      else if (c[0]==='目標回数')    document.getElementById('targetCount').value = c[1]||80;
+      if      (c[0]==='キャラ名')       document.getElementById('charName').value = c[1]||'';
+      else if (c[0]==='現在のスキルLv') document.getElementById('currentLv').value = c[1]||0;
+      else if (c[0]==='目標のスキルLv') document.getElementById('targetLv').value = c[1]||80;
+      // 旧仕様CSV互換
+      else if (c[0]==='手持ちEXP')      { /* 無視 */ }
+      else if (c[0]==='目標回数')       document.getElementById('targetLv').value = c[1]||80; 
+      
       else if (c[0]==='tickTriple')  document.getElementById('tickTriple').value = c[1]||0;
       else if (c[0]==='tickPremium') document.getElementById('tickPremium').value = c[1]||0;
       else if (c[0]==='tickDouble')  document.getElementById('tickDouble').value = c[1]||0;
@@ -825,8 +837,9 @@ function importCSV() {
       }
     }
     updateExpPreview();
-    alert('読み込んだで！');
-  } catch(e) { alert('読み込み失敗。フォーマット確認してや'); }
+    updateTargetDiff();
+    alert('データを読み込みました。');
+  } catch(e) { alert('読み込みに失敗しました。フォーマットを確認してください。'); }
 }
 
 function exportResultCSV() {
@@ -839,19 +852,21 @@ function exportResultCSV() {
       csv += `${d.charName},${parts[0]}(${parts[1]}),${dest},${d.summaryMap[key][dest]}\n`;
     }
   }
-  csv += `\n達成回数,${d.done}/${d.target}\n消費EXP,${d.usedExp}\n残りEXP,${d.expAfter}\n`;
+  const expStatus = d.expAfter >= 0 ? d.expAfter : `${Math.abs(d.expAfter)} 不足`;
+  csv += `\n達成回数,${d.done}/${d.target}\n消費EXP,${d.usedExp}\n残りEXP,${expStatus}\n`;
+  
   const bom  = new Uint8Array([0xEF,0xBB,0xBF]);
   const blob = new Blob([bom,csv],{type:'text/csv;charset=utf-8;'});
   const a    = document.createElement('a');
   a.href     = URL.createObjectURL(blob);
-  a.download = `${d.charName}_結果v3.csv`;
+  a.download = `${d.charName}_結果.csv`;
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
 }
 
 function copyResultText() {
   const t = document.getElementById('result').innerText;
   if (!t) return;
-  navigator.clipboard.writeText(t).then(() => alert('コピーしたで！'));
+  navigator.clipboard.writeText(t).then(() => alert('結果をクリップボードにコピーしました。'));
 }
 </script>
 </body>
