@@ -41,39 +41,12 @@ body {
 .wrap { max-width: 720px; margin: 0 auto; }
 
 /* ── ヘッダー ── */
-.hdr {
-  text-align: center;
-  padding: 28px 0 24px;
-  position: relative;
-}
-.hdr-tag {
-  font-family: 'M PLUS 1 Code', monospace;
-  font-size: 10px;
-  letter-spacing: 4px;
-  color: var(--accent);
-  text-transform: uppercase;
-  margin-bottom: 10px;
-  opacity: 0.8;
-}
-.hdr h1 {
-  font-size: 26px;
-  font-weight: 900;
-  letter-spacing: 1px;
-  line-height: 1.2;
-}
+.hdr { text-align: center; padding: 28px 0 24px; position: relative; }
+.hdr-tag { font-family: 'M PLUS 1 Code', monospace; font-size: 10px; letter-spacing: 4px; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; opacity: 0.8; }
+.hdr h1 { font-size: 26px; font-weight: 900; letter-spacing: 1px; line-height: 1.2; }
 .hdr h1 span { color: var(--accent); }
-.hdr-sub {
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 8px;
-  font-family: 'M PLUS 1 Code', monospace;
-}
-.hdr-line {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent), var(--pink), transparent);
-  margin-top: 20px;
-  opacity: 0.4;
-}
+.hdr-sub { font-size: 12px; color: var(--muted); margin-top: 8px; font-family: 'M PLUS 1 Code', monospace; }
+.hdr-line { height: 1px; background: linear-gradient(90deg, transparent, var(--accent), var(--pink), transparent); margin-top: 20px; opacity: 0.4; }
 
 /* ── パネル ── */
 .panel {
@@ -95,47 +68,41 @@ body {
   align-items: center;
   gap: 8px;
 }
-.panel-title::before {
-  content: '';
-  display: inline-block;
-  width: 3px;
-  height: 14px;
-  background: var(--accent);
-  border-radius: 2px;
+.panel-title::before { content: ''; display: inline-block; width: 3px; height: 14px; background: var(--accent); border-radius: 2px; }
+
+/* ── トグル（折りたたみ） ── */
+.toggle-btn {
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s;
 }
+.toggle-btn:hover { border-color: var(--accent); }
+.toggle-icon { color: var(--accent); font-size: 12px; transition: transform 0.3s; }
+.toggle-btn.open .toggle-icon { transform: rotate(90deg); }
+#expMgmtContent { display: none; margin-top: 14px; }
 
 /* ── テーブル共通 ── */
 .tbl-wrap { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
-th {
-  font-family: 'M PLUS 1 Code', monospace;
-  font-size: 10px;
-  letter-spacing: 1px;
-  color: var(--muted);
-  padding: 6px 4px;
-  border-bottom: 1px solid var(--border);
-  text-align: center;
-  white-space: nowrap;
-}
-td {
-  padding: 9px 4px;
-  text-align: center;
-  border-bottom: 1px solid rgba(37,42,56,0.6);
-}
-.rlabel {
-  font-family: 'M PLUS 1 Code', monospace;
-  font-size: 13px;
-  font-weight: 700;
-  white-space: nowrap;
-}
-.r2 { color: var(--r2); }
-.r3 { color: var(--r3); }
-.r4 { color: var(--r4); }
-.r5 { color: var(--r5); }
+th { font-family: 'M PLUS 1 Code', monospace; font-size: 10px; letter-spacing: 1px; color: var(--muted); padding: 6px 4px; border-bottom: 1px solid var(--border); text-align: center; white-space: nowrap; }
+td { padding: 9px 4px; text-align: center; border-bottom: 1px solid rgba(37,42,56,0.6); }
+.rlabel { font-family: 'M PLUS 1 Code', monospace; font-size: 13px; font-weight: 700; white-space: nowrap; }
+.r2 { color: var(--r2); } .r3 { color: var(--r3); } .r4 { color: var(--r4); } .r5 { color: var(--r5); }
 
 /* ── 入力 ── */
 input[type="number"], input[type="text"] {
-  background: var(--card);
+  background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 6px;
   color: var(--text);
@@ -147,186 +114,76 @@ input[type="number"], input[type="text"] {
   width: 60px;
   transition: border-color 0.15s;
 }
-input[type="number"]:focus, input[type="text"]:focus {
-  outline: none;
-  border-color: var(--accent);
-}
+input[type="number"]:focus, input[type="text"]:focus { outline: none; border-color: var(--accent); }
 input[type="text"] { width: 200px; text-align: left; padding: 7px 10px; }
-textarea {
-  width: 100%;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  color: var(--muted);
-  font-family: 'M PLUS 1 Code', monospace;
-  font-size: 11px;
-  padding: 10px;
-  height: 60px;
-  resize: vertical;
-  margin-bottom: 10px;
-}
+textarea { width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; color: var(--muted); font-family: 'M PLUS 1 Code', monospace; font-size: 11px; padding: 10px; height: 60px; resize: vertical; margin-bottom: 10px; }
 textarea:focus { outline: none; border-color: var(--accent); color: var(--text); }
+
+/* ── 入力補助ボタン (+1, +10, +100) ── */
+.qty-wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.qty-btns { display: flex; gap: 4px; }
+.qty-btn {
+  background: var(--surf);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 10px;
+  font-family: 'M PLUS 1 Code', monospace;
+  padding: 3px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+.qty-btn:active { background: var(--accent); color: #000; border-color: var(--accent); transform: scale(0.95); }
 
 /* ── ボタン ── */
 .btn-row { display: flex; gap: 8px; flex-wrap: wrap; }
-.btn {
-  font-family: 'M PLUS 1 Code', monospace;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  padding: 8px 14px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  transition: opacity 0.15s, transform 0.1s;
-  white-space: nowrap;
-}
+.btn { font-family: 'M PLUS 1 Code', monospace; font-size: 12px; font-weight: 700; letter-spacing: 1px; padding: 8px 14px; border-radius: 6px; border: none; cursor: pointer; transition: opacity 0.15s, transform 0.1s; white-space: nowrap; }
 .btn:active { opacity: 0.7; transform: scale(0.96); }
-.btn-cyan   { background: var(--accent); color: #000; }
-.btn-green  { background: var(--green);  color: #000; }
-.btn-pink   { background: var(--pink);   color: #fff; }
-.btn-ghost  { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+.btn-cyan  { background: var(--accent); color: #000; }
+.btn-green { background: var(--green);  color: #000; }
+.btn-pink  { background: var(--pink);   color: #fff; }
+.btn-ghost { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
 
 .btn-calc {
-  width: 100%;
-  padding: 16px;
-  font-size: 16px;
-  letter-spacing: 3px;
+  width: 100%; padding: 16px; font-size: 16px; letter-spacing: 3px;
   background: linear-gradient(135deg, var(--accent) 0%, #0080ff 50%, var(--pink) 100%);
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  margin-top: 14px;
-  font-family: 'M PLUS 1 Code', monospace;
-  font-weight: 700;
-  transition: opacity 0.2s;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  color: #fff; border: none; border-radius: 10px; cursor: pointer;
+  margin-top: 14px; font-family: 'M PLUS 1 Code', monospace; font-weight: 700;
+  transition: opacity 0.2s; text-shadow: 0 1px 4px rgba(0,0,0,0.5);
 }
 .btn-calc:hover { opacity: 0.88; }
 
 /* ── チケットグリッド ── */
-.ticket-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-}
-.t-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 10px 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.t-name {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--text);
-  line-height: 1.4;
-}
-.t-exp {
-  font-family: 'M PLUS 1 Code', monospace;
-  font-size: 10px;
-  color: var(--green);
-  background: rgba(0,229,160,0.1);
-  display: inline-block;
-  padding: 1px 6px;
-  border-radius: 3px;
-}
+.ticket-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.t-card { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+.t-head { display: flex; justify-content: space-between; align-items: flex-start; }
+.t-name { font-size: 12px; font-weight: 700; color: var(--text); line-height: 1.2; }
+.t-exp { font-family: 'M PLUS 1 Code', monospace; font-size: 10px; color: var(--green); background: rgba(0,229,160,0.1); display: inline-block; padding: 2px 6px; border-radius: 3px; margin-top: 4px; }
 .t-row { display: flex; align-items: center; gap: 8px; }
 
 /* ── EXP合計バー ── */
-.exp-total-bar {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 12px 14px;
-  margin-top: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+.exp-total-bar { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin-top: 14px; display: flex; justify-content: space-between; align-items: center; }
 .exp-total-label { font-size: 12px; color: var(--muted); }
-.exp-total-val {
-  font-family: 'M PLUS 1 Code', monospace;
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--accent);
-}
-.exp-breakdown {
-  font-size: 10px;
-  color: var(--muted);
-  margin-top: 4px;
-  font-family: 'M PLUS 1 Code', monospace;
-}
+.exp-total-val { font-family: 'M PLUS 1 Code', monospace; font-size: 20px; font-weight: 700; color: var(--accent); }
+.exp-breakdown { font-size: 10px; color: var(--muted); margin-top: 4px; font-family: 'M PLUS 1 Code', monospace; }
 
 /* ── 目標 ── */
-.target-row {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  font-size: 15px;
-  font-weight: 700;
-}
+.target-row { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 15px; font-weight: 700; }
 .target-row span { color: var(--muted); font-size: 13px; }
 
 /* ── 結果 ── */
-.result-group {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 12px 14px;
-  margin-bottom: 10px;
-}
-.rg-title {
-  font-family: 'M PLUS 1 Code', monospace;
-  font-size: 12px;
-  letter-spacing: 1px;
-  margin-bottom: 8px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid var(--border);
-}
-.rg-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px 0;
-  font-size: 13px;
-  border-bottom: 1px solid rgba(37,42,56,0.5);
-}
+.result-group { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin-bottom: 10px; }
+.rg-title { font-family: 'M PLUS 1 Code', monospace; font-size: 12px; letter-spacing: 1px; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+.rg-item { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; font-size: 13px; border-bottom: 1px solid rgba(37,42,56,0.5); }
 .rg-item:last-child { border-bottom: none; }
-.rg-val {
-  font-family: 'M PLUS 1 Code', monospace;
-  font-size: 15px;
-  font-weight: 700;
-}
+.rg-val { font-family: 'M PLUS 1 Code', monospace; font-size: 15px; font-weight: 700; }
 
-.sum-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 8px;
-  margin-top: 12px;
-}
-.sum-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 12px 8px;
-  text-align: center;
-}
+.sum-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 12px; }
+.sum-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 8px; text-align: center; }
 .sum-lbl { font-size: 10px; color: var(--muted); margin-bottom: 6px; font-family:'M PLUS 1 Code',monospace; letter-spacing:0.5px; }
 .sum-val { font-family: 'M PLUS 1 Code', monospace; font-size: 20px; font-weight: 700; }
 
-.bar-wrap {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 12px 14px;
-  margin-top: 10px;
-}
+.bar-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin-top: 10px; }
 .bar-head { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-bottom: 8px; font-family:'M PLUS 1 Code',monospace; }
 .bar-track { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
 .bar-fill { height: 100%; border-radius: 3px; transition: width 0.6s ease; }
@@ -334,45 +191,12 @@ textarea:focus { outline: none; border-color: var(--accent); color: var(--text);
 .bar-warn   { background: linear-gradient(90deg, var(--yellow), #ff9f1c); }
 .bar-danger { background: linear-gradient(90deg, var(--red), var(--pink)); }
 
-.ok-box {
-  background: rgba(0,229,160,0.08);
-  border: 1px solid var(--green);
-  border-radius: 8px;
-  padding: 12px 14px;
-  color: var(--green);
-  font-size: 13px;
-  font-weight: 700;
-  margin-top: 10px;
-  line-height: 1.5;
-  text-align: center;
-}
-.ng-box {
-  background: rgba(255,74,107,0.08);
-  border: 1px solid var(--red);
-  border-radius: 8px;
-  padding: 12px 14px;
-  color: var(--red);
-  font-size: 13px;
-  font-weight: 700;
-  margin-top: 10px;
-  line-height: 1.5;
-  text-align: center;
-}
+.ok-box { background: rgba(0,229,160,0.08); border: 1px solid var(--green); border-radius: 8px; padding: 12px 14px; color: var(--green); font-size: 13px; font-weight: 700; margin-top: 10px; line-height: 1.5; text-align: center; }
+.ng-box { background: rgba(255,74,107,0.08); border: 1px solid var(--red); border-radius: 8px; padding: 12px 14px; color: var(--red); font-size: 13px; font-weight: 700; margin-top: 10px; line-height: 1.5; text-align: center; }
 
-.note {
-  font-size: 11px;
-  color: var(--muted);
-  background: rgba(0,229,255,0.05);
-  border-left: 2px solid var(--accent);
-  padding: 7px 10px;
-  border-radius: 0 6px 6px 0;
-  margin-top: 10px;
-  line-height: 1.6;
-  font-family: 'M PLUS 1 Code', monospace;
-}
+.note { font-size: 11px; color: var(--muted); background: rgba(0,229,255,0.05); border-left: 2px solid var(--accent); padding: 7px 10px; border-radius: 0 6px 6px 0; margin-top: 10px; line-height: 1.6; font-family: 'M PLUS 1 Code', monospace; }
 
-.divider { height: 1px; background: var(--border); margin: 14px 0; }
-
+.divider { height: 1px; background: var(--border); margin: 20px 0; }
 #resultPanel { display: none; }
 </style>
 </head>
@@ -420,80 +244,129 @@ textarea:focus { outline: none; border-color: var(--accent); color: var(--text);
   <div class="note">Lv1カードは最大4回アップ可能（→Lv5）。Lv4は1回のみ。</div>
 </div>
 
-<!-- 控え室 -->
-<div class="panel">
-  <div class="panel-title">STEP 2 — 控え室カード（EXP素材）</div>
-  <div class="tbl-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>レア</th>
-          <th>枚数</th>
-          <th>EXP/枚</th>
-          <th style="color:var(--green)">変換EXP</th>
-        </tr>
-      </thead>
-      <tbody id="benchBody"></tbody>
-    </table>
-  </div>
-  <div class="note">素材として使用すると上記EXPが獲得できます。</div>
-</div>
+<!-- スキル経験値管理 (トグル) -->
+<div class="panel" style="padding: 10px;">
+  <button class="toggle-btn" id="toggleBtn" onclick="toggleExpMgmt()">
+    <span>STEP 2 — スキル経験値（任意で入力）</span>
+    <span class="toggle-icon">▶</span>
+  </button>
+  
+  <div id="expMgmtContent">
+    <div style="padding: 10px 4px;">
+      
+      <!-- 控え室 -->
+      <div style="margin-bottom: 24px;">
+        <div class="panel-title" style="margin-bottom:8px;">控え室カード（EXP素材）</div>
+        <div class="tbl-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>レア</th>
+                <th style="width:100px;">枚数</th>
+                <th>EXP/枚</th>
+                <th style="color:var(--green)">変換EXP</th>
+              </tr>
+            </thead>
+            <tbody id="benchBody"></tbody>
+          </table>
+        </div>
+      </div>
 
-<!-- チケット -->
-<div class="panel">
-  <div class="panel-title">STEP 3 — スキル練習チケット</div>
-  <div class="ticket-grid">
-    <div class="t-card">
-      <div class="t-name">トリプル</div>
-      <div class="t-exp">+30 EXP/枚</div>
-      <div class="t-row">
-        <input type="number" id="tickTriple" value="0" min="0" oninput="updateExpPreview()">
-        <span style="font-size:11px;color:var(--muted);">枚</span>
+      <!-- チケット -->
+      <div>
+        <div class="panel-title" style="margin-bottom:8px;">スキル練習チケット</div>
+        <div class="ticket-grid">
+          <!-- プレミアム -->
+          <div class="t-card">
+            <div class="t-head">
+              <div class="t-name">プレミアム<br><span class="t-exp">+200 EXP/枚</span></div>
+            </div>
+            <div class="qty-wrap">
+              <div class="t-row"><input type="number" id="tickPremium" value="0" min="0" oninput="updateExpPreview()"><span style="font-size:11px;color:var(--muted);">枚</span></div>
+              <div class="qty-btns">
+                <button class="qty-btn" onclick="addValue('tickPremium',1)">+1</button><button class="qty-btn" onclick="addValue('tickPremium',10)">+10</button><button class="qty-btn" onclick="addValue('tickPremium',100)">+100</button>
+              </div>
+            </div>
+          </div>
+          <!-- キャラ限定 -->
+          <div class="t-card">
+            <div class="t-head">
+              <div class="t-name">キャラ限定<br><span class="t-exp">+180 EXP/枚</span></div>
+            </div>
+            <div class="qty-wrap">
+              <div class="t-row"><input type="number" id="tickChar" value="0" min="0" oninput="updateExpPreview()"><span style="font-size:11px;color:var(--muted);">枚</span></div>
+              <div class="qty-btns">
+                <button class="qty-btn" onclick="addValue('tickChar',1)">+1</button><button class="qty-btn" onclick="addValue('tickChar',10)">+10</button><button class="qty-btn" onclick="addValue('tickChar',100)">+100</button>
+              </div>
+            </div>
+          </div>
+          <!-- バンド限定 -->
+          <div class="t-card">
+            <div class="t-head">
+              <div class="t-name">バンド限定<br><span class="t-exp">+60 EXP/枚</span></div>
+            </div>
+            <div class="qty-wrap">
+              <div class="t-row"><input type="number" id="tickBand" value="0" min="0" oninput="updateExpPreview()"><span style="font-size:11px;color:var(--muted);">枚</span></div>
+              <div class="qty-btns">
+                <button class="qty-btn" onclick="addValue('tickBand',1)">+1</button><button class="qty-btn" onclick="addValue('tickBand',10)">+10</button><button class="qty-btn" onclick="addValue('tickBand',100)">+100</button>
+              </div>
+            </div>
+          </div>
+          <!-- トリプル -->
+          <div class="t-card">
+            <div class="t-head">
+              <div class="t-name">トリプル<br><span class="t-exp">+30 EXP/枚</span></div>
+            </div>
+            <div class="qty-wrap">
+              <div class="t-row"><input type="number" id="tickTriple" value="0" min="0" oninput="updateExpPreview()"><span style="font-size:11px;color:var(--muted);">枚</span></div>
+              <div class="qty-btns">
+                <button class="qty-btn" onclick="addValue('tickTriple',1)">+1</button><button class="qty-btn" onclick="addValue('tickTriple',10)">+10</button><button class="qty-btn" onclick="addValue('tickTriple',100)">+100</button>
+              </div>
+            </div>
+          </div>
+          <!-- ダブル -->
+          <div class="t-card">
+            <div class="t-head">
+              <div class="t-name">ダブル<br><span class="t-exp">+5 EXP/枚</span></div>
+            </div>
+            <div class="qty-wrap">
+              <div class="t-row"><input type="number" id="tickDouble" value="0" min="0" oninput="updateExpPreview()"><span style="font-size:11px;color:var(--muted);">枚</span></div>
+              <div class="qty-btns">
+                <button class="qty-btn" onclick="addValue('tickDouble',1)">+1</button><button class="qty-btn" onclick="addValue('tickDouble',10)">+10</button><button class="qty-btn" onclick="addValue('tickDouble',100)">+100</button>
+              </div>
+            </div>
+          </div>
+          <!-- シングル -->
+          <div class="t-card">
+            <div class="t-head">
+              <div class="t-name">シングル<br><span class="t-exp">+1 EXP/枚</span></div>
+            </div>
+            <div class="qty-wrap">
+              <div class="t-row"><input type="number" id="tickSingle" value="0" min="0" oninput="updateExpPreview()"><span style="font-size:11px;color:var(--muted);">枚</span></div>
+              <div class="qty-btns">
+                <button class="qty-btn" onclick="addValue('tickSingle',1)">+1</button><button class="qty-btn" onclick="addValue('tickSingle',10)">+10</button><button class="qty-btn" onclick="addValue('tickSingle',100)">+100</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="t-card">
-      <div class="t-name">プレミアム</div>
-      <div class="t-exp">+200 EXP/枚</div>
-      <div class="t-row">
-        <input type="number" id="tickPremium" value="0" min="0" oninput="updateExpPreview()">
-        <span style="font-size:11px;color:var(--muted);">枚</span>
-      </div>
-    </div>
-    <div class="t-card">
-      <div class="t-name">ダブル</div>
-      <div class="t-exp">+5 EXP/枚</div>
-      <div class="t-row">
-        <input type="number" id="tickDouble" value="0" min="0" oninput="updateExpPreview()">
-        <span style="font-size:11px;color:var(--muted);">枚</span>
-      </div>
-    </div>
-    <div class="t-card">
-      <div class="t-name">シングル</div>
-      <div class="t-exp">+1 EXP/枚</div>
-      <div class="t-row">
-        <input type="number" id="tickSingle" value="0" min="0" oninput="updateExpPreview()">
-        <span style="font-size:11px;color:var(--muted);">枚</span>
-      </div>
-    </div>
-  </div>
-</div>
 
-<!-- EXP合計プレビュー -->
-<div class="panel">
-  <div class="panel-title">STEP 4 — EXP合計プレビュー</div>
-  <div class="exp-total-bar">
-    <div>
-      <div class="exp-total-label">使用可能 総EXP</div>
-      <div class="exp-breakdown" id="expBreakdown">内訳: 計算中...</div>
+      <!-- EXPプレビュー -->
+      <div class="exp-total-bar">
+        <div>
+          <div class="exp-total-label">使用可能 総EXP</div>
+          <div class="exp-breakdown" id="expBreakdown">内訳: 計算中...</div>
+        </div>
+        <div class="exp-total-val" id="totalExpDisplay">0</div>
+      </div>
+
     </div>
-    <div class="exp-total-val" id="totalExpDisplay">0</div>
   </div>
-  <div class="note">控え室の変換分とスキル練習チケットのEXP合計が、実際に使用可能なEXPです。</div>
 </div>
 
 <!-- 目標 & 計算 -->
 <div class="panel">
-  <div class="panel-title">STEP 5 — 目標 & 計算</div>
+  <div class="panel-title">STEP 3 — 目標 & 計算</div>
   <div class="target-row">
     <span>現在のスキルLv:</span>
     <input type="number" id="currentLv" value="0" min="0" oninput="updateTargetDiff()">
@@ -519,23 +392,44 @@ textarea:focus { outline: none; border-color: var(--accent); color: var(--text);
 <script>
 const RARITIES   = ['星2','星3','星4','星5'];
 const R_CLASS    = ['r2','r3','r4','r5'];
-// スキルアップコスト [レア][現在Lv-1]
 const COST = [
   [20,  30,  40,  60],
   [120, 160, 200, 300],
   [450, 600, 750, 1200],
   [900,1200,1500,2400]
 ];
-// 控え室EXP変換値
 const BENCH_EXP = [5, 45, 250, 500];
-// チケットEXP
-const TICK_EXP = { triple:30, premium:200, double:5, single:1 };
+const TICK_EXP = { premium:200, char:180, band:60, triple:30, double:5, single:1 };
 
 let latestResult = null;
 
+/* ── UI制御 ── */
+function toggleExpMgmt() {
+  const content = document.getElementById('expMgmtContent');
+  const btn = document.getElementById('toggleBtn');
+  if (content.style.display === 'block') {
+    content.style.display = 'none';
+    btn.classList.remove('open');
+  } else {
+    content.style.display = 'block';
+    btn.classList.add('open');
+  }
+}
+
+function addValue(id, amount) {
+  const el = document.getElementById(id);
+  let val = parseInt(el.value) || 0;
+  el.value = Math.max(0, val + amount);
+  if (id.startsWith('b')) {
+    const ri = id.replace('b', '');
+    updateCardMax(ri); // 念のため
+  }
+  updateExpPreview();
+}
+
 /* ── テーブル初期化 ── */
 (function init() {
-  // 被りカードテーブル
+  // 被りカード
   const cb = document.getElementById('cardBody');
   RARITIES.forEach((r, i) => {
     const tr = document.createElement('tr');
@@ -550,13 +444,22 @@ let latestResult = null;
     cb.appendChild(tr);
   });
 
-  // 控え室テーブル
+  // 控え室
   const bb = document.getElementById('benchBody');
   RARITIES.forEach((r, i) => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td><span class="rlabel ${R_CLASS[i]}">${r}</span></td>
-      <td><input type="number" id="b${i}" value="0" min="0" oninput="updateExpPreview()"></td>
+      <td>
+        <div class="qty-wrap">
+          <input type="number" id="b${i}" value="0" min="0" oninput="updateExpPreview()">
+          <div class="qty-btns">
+            <button class="qty-btn" onclick="addValue('b${i}',1)">+1</button>
+            <button class="qty-btn" onclick="addValue('b${i}',10)">+10</button>
+            <button class="qty-btn" onclick="addValue('b${i}',100)">+100</button>
+          </div>
+        </div>
+      </td>
       <td style="font-family:'M PLUS 1 Code',monospace;color:var(--green)">${BENCH_EXP[i].toLocaleString()}</td>
       <td id="bexp${i}" style="font-family:'M PLUS 1 Code',monospace;font-weight:700;color:var(--green)">0</td>
     `;
@@ -576,7 +479,6 @@ function updateCardMax(ri) {
 }
 
 function updateExpPreview() {
-  // 控え室EXP
   let benchTotal = 0;
   RARITIES.forEach((_, i) => {
     const cnt = parseInt(document.getElementById(`b${i}`).value) || 0;
@@ -585,19 +487,24 @@ function updateExpPreview() {
     benchTotal += exp;
   });
 
-  // チケットEXP
-  const tTriple  = parseInt(document.getElementById('tickTriple').value)  || 0;
-  const tPremium = parseInt(document.getElementById('tickPremium').value) || 0;
-  const tDouble  = parseInt(document.getElementById('tickDouble').value)  || 0;
-  const tSingle  = parseInt(document.getElementById('tickSingle').value)  || 0;
-  const tickTotal = tTriple*TICK_EXP.triple + tPremium*TICK_EXP.premium
-                  + tDouble*TICK_EXP.double + tSingle*TICK_EXP.single;
+  const tPrem = parseInt(document.getElementById('tickPremium').value) || 0;
+  const tChar = parseInt(document.getElementById('tickChar').value) || 0;
+  const tBand = parseInt(document.getElementById('tickBand').value) || 0;
+  const tTrip = parseInt(document.getElementById('tickTriple').value) || 0;
+  const tDoub = parseInt(document.getElementById('tickDouble').value) || 0;
+  const tSing = parseInt(document.getElementById('tickSingle').value) || 0;
+
+  const tickTotal = 
+    tPrem * TICK_EXP.premium +
+    tChar * TICK_EXP.char +
+    tBand * TICK_EXP.band +
+    tTrip * TICK_EXP.triple +
+    tDoub * TICK_EXP.double +
+    tSing * TICK_EXP.single;
 
   const grand = benchTotal + tickTotal;
-
   document.getElementById('totalExpDisplay').textContent = grand.toLocaleString();
-  document.getElementById('expBreakdown').textContent =
-    `控え室 ${benchTotal.toLocaleString()} + チケット ${tickTotal.toLocaleString()}`;
+  document.getElementById('expBreakdown').textContent = `控え室 ${benchTotal.toLocaleString()} + チケット ${tickTotal.toLocaleString()}`;
 }
 
 function updateTargetDiff() {
@@ -620,27 +527,29 @@ function calculate() {
   RARITIES.forEach((_, i) => {
     benchTotal += (parseInt(document.getElementById(`b${i}`).value) || 0) * BENCH_EXP[i];
   });
-  const tTriple  = parseInt(document.getElementById('tickTriple').value)  || 0;
-  const tPremium = parseInt(document.getElementById('tickPremium').value) || 0;
-  const tDouble  = parseInt(document.getElementById('tickDouble').value)  || 0;
-  const tSingle  = parseInt(document.getElementById('tickSingle').value)  || 0;
-  const tickTotal = tTriple*TICK_EXP.triple + tPremium*TICK_EXP.premium
-                  + tDouble*TICK_EXP.double + tSingle*TICK_EXP.single;
+  const tPrem = parseInt(document.getElementById('tickPremium').value) || 0;
+  const tChar = parseInt(document.getElementById('tickChar').value) || 0;
+  const tBand = parseInt(document.getElementById('tickBand').value) || 0;
+  const tTrip = parseInt(document.getElementById('tickTriple').value) || 0;
+  const tDoub = parseInt(document.getElementById('tickDouble').value) || 0;
+  const tSing = parseInt(document.getElementById('tickSingle').value) || 0;
+
+  const tickTotal = 
+    tPrem * TICK_EXP.premium + tChar * TICK_EXP.char + tBand * TICK_EXP.band +
+    tTrip * TICK_EXP.triple + tDoub * TICK_EXP.double + tSing * TICK_EXP.single;
   
   const totalExp = benchTotal + tickTotal;
 
-  // 被りカードプール構築
+  // プール構築
   let pool = [];
   for (let r = 0; r < 4; r++) {
     for (let l = 1; l <= 4; l++) {
       const cnt = parseInt(document.getElementById(`c${r}_${l}`).value) || 0;
-      for (let i = 0; i < cnt; i++) {
-        pool.push({ r, initLv: l, curLv: l });
-      }
+      for (let i = 0; i < cnt; i++) pool.push({ r, initLv: l, curLv: l });
     }
   }
 
-  // 全アップグレード候補を列挙してコスト昇順ソート（貪欲最適）
+  // 候補列挙
   let upgrades = [];
   pool.forEach((card, ci) => {
     for (let lv = card.initLv; lv <= 4; lv++) {
@@ -649,7 +558,6 @@ function calculate() {
   });
   upgrades.sort((a, b) => a.exp - b.exp);
 
-  // EXP不足でも目標回数に達するまで計算を続ける
   let done = 0;
   let usedExp = 0;
   const cardFinalLv = pool.map(c => c.initLv);
@@ -676,12 +584,7 @@ function calculate() {
   const remaining = target - done;
   const expAfter  = totalExp - usedExp;
 
-  latestResult = {
-    charName, summaryMap, done, target, remaining,
-    usedExp, totalExp, expAfter,
-    benchTotal, tickTotal
-  };
-
+  latestResult = { charName, summaryMap, done, target, remaining, usedExp, totalExp, expAfter, benchTotal, tickTotal };
   renderResult(latestResult);
 }
 
@@ -695,84 +598,50 @@ function renderResult(d) {
     for (const key in d.summaryMap) {
       const parts = key.split('_');
       const rc = R_CLASS[RARITIES.indexOf(parts[0])];
-      html += `<div class="result-group">
-        <div class="rg-title"><span class="rlabel ${rc}">${parts[0]}</span>　${parts[1]} のカード</div>`;
+      html += `<div class="result-group"><div class="rg-title"><span class="rlabel ${rc}">${parts[0]}</span>　${parts[1]} のカード</div>`;
       for (const dest in d.summaryMap[key]) {
-        html += `<div class="rg-item">
-          <span>➜ <strong>${dest}</strong> する</span>
-          <span class="rg-val" style="color:var(--accent)">${d.summaryMap[key][dest]} 枚</span>
-        </div>`;
+        html += `<div class="rg-item"><span>➜ <strong>${dest}</strong> する</span><span class="rg-val" style="color:var(--accent)">${d.summaryMap[key][dest]} 枚</span></div>`;
       }
       html += `</div>`;
     }
   }
 
-  // サマリーカード
   html += `<div class="sum-grid">
-    <div class="sum-card">
-      <div class="sum-lbl">達成回数</div>
-      <div class="sum-val" style="color:var(--accent)">${d.done}<span style="font-size:12px;color:var(--muted)">/${d.target}</span></div>
-    </div>
-    <div class="sum-card">
-      <div class="sum-lbl">必要総EXP</div>
-      <div class="sum-val" style="color:var(--pink);font-size:16px;">${d.usedExp.toLocaleString()}</div>
-    </div>
-    <div class="sum-card">
-      <div class="sum-lbl">${d.expAfter >= 0 ? '残りEXP' : '不足EXP'}</div>
-      <div class="sum-val" style="color:${d.expAfter >= 0 ? 'var(--green)' : 'var(--red)'};font-size:16px;">${Math.abs(d.expAfter).toLocaleString()}</div>
-    </div>
+    <div class="sum-card"><div class="sum-lbl">達成回数</div><div class="sum-val" style="color:var(--accent)">${d.done}<span style="font-size:12px;color:var(--muted)">/${d.target}</span></div></div>
+    <div class="sum-card"><div class="sum-lbl">必要総EXP</div><div class="sum-val" style="color:var(--pink);font-size:16px;">${d.usedExp.toLocaleString()}</div></div>
+    <div class="sum-card"><div class="sum-lbl">${d.expAfter >= 0 ? '残りEXP' : '不足EXP'}</div><div class="sum-val" style="color:${d.expAfter >= 0 ? 'var(--green)' : 'var(--red)'};font-size:16px;">${Math.abs(d.expAfter).toLocaleString()}</div></div>
   </div>`;
 
-  // EXPバー
   let pct = 0;
-  if (d.totalExp > 0) {
-    pct = Math.min(100, Math.round(d.usedExp / d.totalExp * 100));
-  } else if (d.usedExp > 0) {
-    pct = 100;
-  }
+  if (d.totalExp > 0) pct = Math.min(100, Math.round(d.usedExp / d.totalExp * 100));
+  else if (d.usedExp > 0) pct = 100;
   
   const isExpShort = d.expAfter < 0;
   const barCls = !isExpShort ? (pct < 40 ? 'bar-safe' : pct < 70 ? 'bar-warn' : 'bar-danger') : 'bar-danger';
   const pctCol = isExpShort ? 'var(--red)' : (pct < 40 ? 'var(--green)' : pct < 70 ? 'var(--yellow)' : 'var(--red)');
-  const barText = isExpShort 
-    ? `<span style="color:var(--red)">${Math.abs(d.expAfter).toLocaleString()} EXP 不足</span>` 
-    : `残 ${d.expAfter.toLocaleString()} EXP`;
+  const barText = isExpShort ? `<span style="color:var(--red)">${Math.abs(d.expAfter).toLocaleString()} EXP 不足</span>` : `残 ${d.expAfter.toLocaleString()} EXP`;
 
   html += `<div class="bar-wrap">
-    <div class="bar-head">
-      <span>手持ちEXPに対する消費率</span>
-      <span style="color:${pctCol}">${pct}%　（${barText}）</span>
-    </div>
+    <div class="bar-head"><span>手持ちEXPに対する消費率</span><span style="color:${pctCol}">${pct}%　（${barText}）</span></div>
     <div class="bar-track"><div class="bar-fill ${barCls}" style="width:0%" id="barFill"></div></div>
   </div>`;
 
-  // 内訳
   html += `<div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px 14px;margin-top:10px;font-size:12px;font-family:'M PLUS 1 Code',monospace;color:var(--muted);">
     <div style="margin-bottom:4px;">EXP内訳</div>
     <div>控え室: ${d.benchTotal.toLocaleString()} ／ チケット: ${d.tickTotal.toLocaleString()}</div>
     <div style="margin-top:4px;">手持ち合計: ${d.totalExp.toLocaleString()} → 今回の必要EXP: ${d.usedExp.toLocaleString()}</div>
   </div>`;
 
-  // 達成判定メッセージ
   if (d.remaining === 0) {
-    if (d.expAfter >= 0) {
-      html += `<div class="ok-box">✅ 目標達成可能です！<br>残り ${d.expAfter.toLocaleString()} EXP あります。</div>`;
-    } else {
-      html += `<div class="ng-box">⚠️ EXPが不足しています。<br>目標回数までのカード枚数は足りますが、すべて実行するにはあと ${Math.abs(d.expAfter).toLocaleString()} EXP 必要です。</div>`;
-    }
+    if (d.expAfter >= 0) html += `<div class="ok-box">✅ 目標達成可能です！<br>残り ${d.expAfter.toLocaleString()} EXP あります。</div>`;
+    else html += `<div class="ng-box">⚠️ EXPが不足しています。<br>目標回数までのカード枚数は足りますが、すべて実行するにはあと ${Math.abs(d.expAfter).toLocaleString()} EXP 必要です。</div>`;
   } else {
-    if (d.expAfter >= 0) {
-      html += `<div class="ng-box">⚠️ カード枚数が不足しています。<br>手持ちのカードでは最大 ${d.done} 回までしかスキルアップできません（目標まであと ${d.remaining} 回不足）。</div>`;
-    } else {
-      html += `<div class="ng-box">⚠️ カード枚数とEXPが両方不足しています。<br>最大 ${d.done} 回分のカードしかなく、さらにそれらを実行するのにも ${Math.abs(d.expAfter).toLocaleString()} EXP 不足しています。</div>`;
-    }
+    if (d.expAfter >= 0) html += `<div class="ng-box">⚠️ カード枚数が不足しています。<br>手持ちのカードでは最大 ${d.done} 回までしかスキルアップできません（目標まであと ${d.remaining} 回不足）。</div>`;
+    else html += `<div class="ng-box">⚠️ カード枚数とEXPが両方不足しています。<br>最大 ${d.done} 回分のカードしかなく、さらにそれらを実行するのにも ${Math.abs(d.expAfter).toLocaleString()} EXP 不足しています。</div>`;
   }
 
   document.getElementById('result').innerHTML = html;
-  setTimeout(() => {
-    const el = document.getElementById('barFill');
-    if (el) el.style.width = pct + '%';
-  }, 100);
+  setTimeout(() => { const el = document.getElementById('barFill'); if (el) el.style.width = pct + '%'; }, 100);
 }
 
 /* ── CSV ── */
@@ -780,8 +649,10 @@ function genCSV() {
   let csv = `キャラ名,${document.getElementById('charName').value||'名称未設定'}\n`;
   csv += `現在のスキルLv,${document.getElementById('currentLv').value||0}\n`;
   csv += `目標のスキルLv,${document.getElementById('targetLv').value||80}\n`;
-  csv += `tickTriple,${document.getElementById('tickTriple').value||0}\n`;
   csv += `tickPremium,${document.getElementById('tickPremium').value||0}\n`;
+  csv += `tickChar,${document.getElementById('tickChar').value||0}\n`;
+  csv += `tickBand,${document.getElementById('tickBand').value||0}\n`;
+  csv += `tickTriple,${document.getElementById('tickTriple').value||0}\n`;
   csv += `tickDouble,${document.getElementById('tickDouble').value||0}\n`;
   csv += `tickSingle,${document.getElementById('tickSingle').value||0}\n`;
   RARITIES.forEach((r, i) => {
@@ -789,9 +660,7 @@ function genCSV() {
     for (let l = 1; l <= 4; l++) row.push(document.getElementById(`c${i}_${l}`).value||0);
     csv += row.join(',') + '\n';
   });
-  RARITIES.forEach((r, i) => {
-    csv += `bench_${r},${document.getElementById(`b${i}`).value||0}\n`;
-  });
+  RARITIES.forEach((r, i) => { csv += `bench_${r},${document.getElementById(`b${i}`).value||0}\n`; });
   return csv;
 }
 
@@ -805,9 +674,7 @@ function exportCSV() {
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
 }
 
-function copyCSV() {
-  navigator.clipboard.writeText(genCSV()).then(() => alert('CSVデータをクリップボードにコピーしました。'));
-}
+function copyCSV() { navigator.clipboard.writeText(genCSV()).then(() => alert('CSVデータをクリップボードにコピーしました。')); }
 
 function importCSV() {
   const raw = document.getElementById('csvInput').value.trim();
@@ -818,13 +685,11 @@ function importCSV() {
       const c = line.split(',');
       if      (c[0]==='キャラ名')       document.getElementById('charName').value = c[1]||'';
       else if (c[0]==='現在のスキルLv') document.getElementById('currentLv').value = c[1]||0;
-      else if (c[0]==='目標のスキルLv') document.getElementById('targetLv').value = c[1]||80;
-      // 旧仕様CSV互換
-      else if (c[0]==='手持ちEXP')      { /* 無視 */ }
-      else if (c[0]==='目標回数')       document.getElementById('targetLv').value = c[1]||80; 
-      
-      else if (c[0]==='tickTriple')  document.getElementById('tickTriple').value = c[1]||0;
+      else if (c[0]==='目標のスキルLv' || c[0]==='目標回数') document.getElementById('targetLv').value = c[1]||80;
       else if (c[0]==='tickPremium') document.getElementById('tickPremium').value = c[1]||0;
+      else if (c[0]==='tickChar')    document.getElementById('tickChar').value = c[1]||0;
+      else if (c[0]==='tickBand')    document.getElementById('tickBand').value = c[1]||0;
+      else if (c[0]==='tickTriple')  document.getElementById('tickTriple').value = c[1]||0;
       else if (c[0]==='tickDouble')  document.getElementById('tickDouble').value = c[1]||0;
       else if (c[0]==='tickSingle')  document.getElementById('tickSingle').value = c[1]||0;
       else if (c[0]==='星2') { for(let i=1;i<=4;i++) document.getElementById(`c0_${i}`).value=c[i]||0; updateCardMax(0); }
@@ -854,7 +719,6 @@ function exportResultCSV() {
   }
   const expStatus = d.expAfter >= 0 ? d.expAfter : `${Math.abs(d.expAfter)} 不足`;
   csv += `\n達成回数,${d.done}/${d.target}\n消費EXP,${d.usedExp}\n残りEXP,${expStatus}\n`;
-  
   const bom  = new Uint8Array([0xEF,0xBB,0xBF]);
   const blob = new Blob([bom,csv],{type:'text/csv;charset=utf-8;'});
   const a    = document.createElement('a');
