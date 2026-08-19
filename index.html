@@ -119,22 +119,6 @@ input[type="text"] { width: 200px; text-align: left; padding: 7px 10px; }
 textarea { width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; color: var(--muted); font-family: 'M PLUS 1 Code', monospace; font-size: 11px; padding: 10px; height: 60px; resize: vertical; margin-bottom: 10px; }
 textarea:focus { outline: none; border-color: var(--accent); color: var(--text); }
 
-/* ── 入力補助ボタン (+1, +10, +100) ── */
-.qty-wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-.qty-btns { display: flex; gap: 4px; }
-.qty-btn {
-  background: var(--surf);
-  border: 1px solid var(--border);
-  color: var(--text);
-  font-size: 10px;
-  font-family: 'M PLUS 1 Code', monospace;
-  padding: 3px 6px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.1s;
-}
-.qty-btn:active { background: var(--accent); color: #000; border-color: var(--accent); transform: scale(0.95); }
-
 /* ── ボタン ── */
 .btn-row { display: flex; gap: 8px; flex-wrap: wrap; }
 .btn { font-family: 'M PLUS 1 Code', monospace; font-size: 12px; font-weight: 700; letter-spacing: 1px; padding: 8px 14px; border-radius: 6px; border: none; cursor: pointer; transition: opacity 0.15s, transform 0.1s; white-space: nowrap; }
@@ -159,7 +143,7 @@ textarea:focus { outline: none; border-color: var(--accent); color: var(--text);
 .t-head { display: flex; justify-content: space-between; align-items: flex-start; }
 .t-name { font-size: 12px; font-weight: 700; color: var(--text); line-height: 1.2; }
 .t-exp { font-family: 'M PLUS 1 Code', monospace; font-size: 10px; color: var(--green); background: rgba(0,229,160,0.1); display: inline-block; padding: 2px 6px; border-radius: 3px; margin-top: 4px; }
-.t-row { display: flex; align-items: center; gap: 8px; }
+.t-row { display: flex; align-items: center; justify-content: center; gap: 8px; }
 
 /* ── EXP合計バー ── */
 .exp-total-bar { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin-top: 14px; display: flex; justify-content: space-between; align-items: center; }
@@ -281,72 +265,42 @@ textarea:focus { outline: none; border-color: var(--accent); color: var(--text);
             <div class="t-head">
               <div class="t-name">プレミアム<br><span class="t-exp">+200 EXP/枚</span></div>
             </div>
-            <div class="qty-wrap">
-              <div class="t-row"><input type="number" id="tickPremium" value="0" min="0" oninput="updateExpPreview()"><span style="font-size:11px;color:var(--muted);">枚</span></div>
-              <div class="qty-btns">
-                <button class="qty-btn" onclick="addValue('tickPremium',1)">+1</button><button class="qty-btn" onclick="addValue('tickPremium',10)">+10</button><button class="qty-btn" onclick="addValue('tickPremium',100)">+100</button>
-              </div>
-            </div>
+            <div class="t-row"><input type="number" id="tickPremium" min="0" oninput="updateExpPreview()"><span style="font-size:11px;color:var(--muted);">枚</span></div>
           </div>
           <!-- キャラ限定 -->
           <div class="t-card">
             <div class="t-head">
               <div class="t-name">キャラ限定<br><span class="t-exp">+180 EXP/枚</span></div>
             </div>
-            <div class="qty-wrap">
-              <div class="t-row"><input type="number" id="tickChar" value="0" min="0" oninput="updateExpPreview()"><span style="font-size:11px;color:var(--muted);">枚</span></div>
-              <div class="qty-btns">
-                <button class="qty-btn" onclick="addValue('tickChar',1)">+1</button><button class="qty-btn" onclick="addValue('tickChar',10)">+10</button><button class="qty-btn" onclick="addValue('tickChar',100)">+100</button>
-              </div>
-            </div>
+            <div class="t-row"><input type="number" id="tickChar" min="0" oninput="updateExpPreview()"><span style="font-size:11px;color:var(--muted);">枚</span></div>
           </div>
           <!-- バンド限定 -->
           <div class="t-card">
             <div class="t-head">
               <div class="t-name">バンド限定<br><span class="t-exp">+60 EXP/枚</span></div>
             </div>
-            <div class="qty-wrap">
-              <div class="t-row"><input type="number" id="tickBand" value="0" min="0" oninput="updateExpPreview()"><span style="font-size:11px;color:var(--muted);">枚</span></div>
-              <div class="qty-btns">
-                <button class="qty-btn" onclick="addValue('tickBand',1)">+1</button><button class="qty-btn" onclick="addValue('tickBand',10)">+10</button><button class="qty-btn" onclick="addValue('tickBand',100)">+100</button>
-              </div>
-            </div>
+            <div class="t-row"><input type="number" id="tickBand" min="0" oninput="updateExpPreview()"><span style="font-size:11px;color:var(--muted);">枚</span></div>
           </div>
           <!-- トリプル -->
           <div class="t-card">
             <div class="t-head">
               <div class="t-name">トリプル<br><span class="t-exp">+30 EXP/枚</span></div>
             </div>
-            <div class="qty-wrap">
-              <div class="t-row"><input type="number" id="tickTriple" value="0" min="0" oninput="updateExpPreview()"><span style="font-size:11px;color:var(--muted);">枚</span></div>
-              <div class="qty-btns">
-                <button class="qty-btn" onclick="addValue('tickTriple',1)">+1</button><button class="qty-btn" onclick="addValue('tickTriple',10)">+10</button><button class="qty-btn" onclick="addValue('tickTriple',100)">+100</button>
-              </div>
-            </div>
+            <div class="t-row"><input type="number" id="tickTriple" min="0" oninput="updateExpPreview()"><span style="font-size:11px;color:var(--muted);">枚</span></div>
           </div>
           <!-- ダブル -->
           <div class="t-card">
             <div class="t-head">
               <div class="t-name">ダブル<br><span class="t-exp">+5 EXP/枚</span></div>
             </div>
-            <div class="qty-wrap">
-              <div class="t-row"><input type="number" id="tickDouble" value="0" min="0" oninput="updateExpPreview()"><span style="font-size:11px;color:var(--muted);">枚</span></div>
-              <div class="qty-btns">
-                <button class="qty-btn" onclick="addValue('tickDouble',1)">+1</button><button class="qty-btn" onclick="addValue('tickDouble',10)">+10</button><button class="qty-btn" onclick="addValue('tickDouble',100)">+100</button>
-              </div>
-            </div>
+            <div class="t-row"><input type="number" id="tickDouble" min="0" oninput="updateExpPreview()"><span style="font-size:11px;color:var(--muted);">枚</span></div>
           </div>
           <!-- シングル -->
           <div class="t-card">
             <div class="t-head">
               <div class="t-name">シングル<br><span class="t-exp">+1 EXP/枚</span></div>
             </div>
-            <div class="qty-wrap">
-              <div class="t-row"><input type="number" id="tickSingle" value="0" min="0" oninput="updateExpPreview()"><span style="font-size:11px;color:var(--muted);">枚</span></div>
-              <div class="qty-btns">
-                <button class="qty-btn" onclick="addValue('tickSingle',1)">+1</button><button class="qty-btn" onclick="addValue('tickSingle',10)">+10</button><button class="qty-btn" onclick="addValue('tickSingle',100)">+100</button>
-              </div>
-            </div>
+            <div class="t-row"><input type="number" id="tickSingle" min="0" oninput="updateExpPreview()"><span style="font-size:11px;color:var(--muted);">枚</span></div>
           </div>
         </div>
       </div>
@@ -416,17 +370,6 @@ function toggleExpMgmt() {
   }
 }
 
-function addValue(id, amount) {
-  const el = document.getElementById(id);
-  let val = parseInt(el.value) || 0;
-  el.value = Math.max(0, val + amount);
-  if (id.startsWith('b')) {
-    const ri = id.replace('b', '');
-    updateCardMax(ri); // 念のため
-  }
-  updateExpPreview();
-}
-
 /* ── テーブル初期化 ── */
 (function init() {
   // 被りカード
@@ -435,10 +378,10 @@ function addValue(id, amount) {
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td><span class="rlabel ${R_CLASS[i]}">${r}</span></td>
-      <td><input type="number" id="c${i}_1" value="0" min="0" oninput="updateCardMax(${i})"></td>
-      <td><input type="number" id="c${i}_2" value="0" min="0" oninput="updateCardMax(${i})"></td>
-      <td><input type="number" id="c${i}_3" value="0" min="0" oninput="updateCardMax(${i})"></td>
-      <td><input type="number" id="c${i}_4" value="0" min="0" oninput="updateCardMax(${i})"></td>
+      <td><input type="number" id="c${i}_1" min="0" oninput="updateCardMax(${i})"></td>
+      <td><input type="number" id="c${i}_2" min="0" oninput="updateCardMax(${i})"></td>
+      <td><input type="number" id="c${i}_3" min="0" oninput="updateCardMax(${i})"></td>
+      <td><input type="number" id="c${i}_4" min="0" oninput="updateCardMax(${i})"></td>
       <td id="cmax${i}" style="font-family:'M PLUS 1 Code',monospace;font-weight:700;color:var(--accent)">0</td>
     `;
     cb.appendChild(tr);
@@ -450,16 +393,7 @@ function addValue(id, amount) {
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td><span class="rlabel ${R_CLASS[i]}">${r}</span></td>
-      <td>
-        <div class="qty-wrap">
-          <input type="number" id="b${i}" value="0" min="0" oninput="updateExpPreview()">
-          <div class="qty-btns">
-            <button class="qty-btn" onclick="addValue('b${i}',1)">+1</button>
-            <button class="qty-btn" onclick="addValue('b${i}',10)">+10</button>
-            <button class="qty-btn" onclick="addValue('b${i}',100)">+100</button>
-          </div>
-        </div>
-      </td>
+      <td><input type="number" id="b${i}" min="0" oninput="updateExpPreview()"></td>
       <td style="font-family:'M PLUS 1 Code',monospace;color:var(--green)">${BENCH_EXP[i].toLocaleString()}</td>
       <td id="bexp${i}" style="font-family:'M PLUS 1 Code',monospace;font-weight:700;color:var(--green)">0</td>
     `;
@@ -680,25 +614,31 @@ function importCSV() {
   const raw = document.getElementById('csvInput').value.trim();
   if (!raw) { alert('CSVデータが入力されていません。'); return; }
   const lines = raw.split(/\r?\n/).map(l => l.trim()).filter(l => l);
+  
+  const setVal = (id, val) => {
+    const num = parseInt(val, 10);
+    document.getElementById(id).value = (num && num > 0) ? num : "";
+  };
+
   try {
     for (const line of lines) {
       const c = line.split(',');
       if      (c[0]==='キャラ名')       document.getElementById('charName').value = c[1]||'';
       else if (c[0]==='現在のスキルLv') document.getElementById('currentLv').value = c[1]||0;
       else if (c[0]==='目標のスキルLv' || c[0]==='目標回数') document.getElementById('targetLv').value = c[1]||80;
-      else if (c[0]==='tickPremium') document.getElementById('tickPremium').value = c[1]||0;
-      else if (c[0]==='tickChar')    document.getElementById('tickChar').value = c[1]||0;
-      else if (c[0]==='tickBand')    document.getElementById('tickBand').value = c[1]||0;
-      else if (c[0]==='tickTriple')  document.getElementById('tickTriple').value = c[1]||0;
-      else if (c[0]==='tickDouble')  document.getElementById('tickDouble').value = c[1]||0;
-      else if (c[0]==='tickSingle')  document.getElementById('tickSingle').value = c[1]||0;
-      else if (c[0]==='星2') { for(let i=1;i<=4;i++) document.getElementById(`c0_${i}`).value=c[i]||0; updateCardMax(0); }
-      else if (c[0]==='星3') { for(let i=1;i<=4;i++) document.getElementById(`c1_${i}`).value=c[i]||0; updateCardMax(1); }
-      else if (c[0]==='星4') { for(let i=1;i<=4;i++) document.getElementById(`c2_${i}`).value=c[i]||0; updateCardMax(2); }
-      else if (c[0]==='星5') { for(let i=1;i<=4;i++) document.getElementById(`c3_${i}`).value=c[i]||0; updateCardMax(3); }
+      else if (c[0]==='tickPremium') setVal('tickPremium', c[1]);
+      else if (c[0]==='tickChar')    setVal('tickChar', c[1]);
+      else if (c[0]==='tickBand')    setVal('tickBand', c[1]);
+      else if (c[0]==='tickTriple')  setVal('tickTriple', c[1]);
+      else if (c[0]==='tickDouble')  setVal('tickDouble', c[1]);
+      else if (c[0]==='tickSingle')  setVal('tickSingle', c[1]);
+      else if (c[0]==='星2') { for(let i=1;i<=4;i++) setVal(`c0_${i}`, c[i]); updateCardMax(0); }
+      else if (c[0]==='星3') { for(let i=1;i<=4;i++) setVal(`c1_${i}`, c[i]); updateCardMax(1); }
+      else if (c[0]==='星4') { for(let i=1;i<=4;i++) setVal(`c2_${i}`, c[i]); updateCardMax(2); }
+      else if (c[0]==='星5') { for(let i=1;i<=4;i++) setVal(`c3_${i}`, c[i]); updateCardMax(3); }
       else if (c[0].startsWith('bench_')) {
         const ri = RARITIES.indexOf(c[0].replace('bench_',''));
-        if (ri >= 0) document.getElementById(`b${ri}`).value = c[1]||0;
+        if (ri >= 0) setVal(`b${ri}`, c[1]);
       }
     }
     updateExpPreview();
@@ -727,10 +667,34 @@ function exportResultCSV() {
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
 }
 
+// クリップボードにコピーする際、不要な表示を取り除いた専用のテキストを生成
 function copyResultText() {
-  const t = document.getElementById('result').innerText;
-  if (!t) return;
-  navigator.clipboard.writeText(t).then(() => alert('結果をクリップボードにコピーしました。'));
+  if (!latestResult) return;
+  const d = latestResult;
+  let text = `【${d.charName} の最適育成手順】\n`;
+
+  if (Object.keys(d.summaryMap).length === 0) {
+    text += `育成可能なカードがありません。\n`;
+  } else {
+    for (const key in d.summaryMap) {
+      const parts = key.split('_');
+      text += `\n[${parts[0]} ${parts[1]}]\n`;
+      for (const dest in d.summaryMap[key]) {
+        text += `➜ ${dest} : ${d.summaryMap[key][dest]}枚\n`;
+      }
+    }
+  }
+
+  text += `\n達成回数: ${d.done} / ${d.target}\n`;
+  text += `必要総EXP: ${d.usedExp.toLocaleString()}\n`;
+  
+  if (d.expAfter >= 0) {
+    text += `残りEXP: ${d.expAfter.toLocaleString()}\n`;
+  } else {
+    text += `不足EXP: ${Math.abs(d.expAfter).toLocaleString()}\n`;
+  }
+
+  navigator.clipboard.writeText(text).then(() => alert('結果をクリップボードにコピーしました。'));
 }
 </script>
 </body>
